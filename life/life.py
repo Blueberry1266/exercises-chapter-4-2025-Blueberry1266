@@ -71,7 +71,6 @@ class Game:
     def __setitem__(self, key, value): 
         self.board[key] = value
 
-
     def show(self):
         pyplot.clf() 
         pyplot.matshow(self.board, fignum=0, cmap='binary')
