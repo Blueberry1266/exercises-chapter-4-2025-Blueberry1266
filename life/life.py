@@ -1,4 +1,4 @@
-"""Programms run life games"""
+"""Programms run life games."""
 import numpy as np
 from matplotlib import pyplot
 from scipy.signal import convolve2d
@@ -52,12 +52,13 @@ glider_gun = np.array([
 
 
 class Game:
-    """It is the life games"""
+    """It is the life games."""
+
     def __init__(self, game, size):
         game.board = np.zeros((size, size))
 
     def play(self):
-        """Start the games"""
+        """Start the games."""
         print("Playing life. Press ctrl + c to stop.")
         pyplot.ion()
         while True:
@@ -66,21 +67,21 @@ class Game:
             pyplot.pause(0.0000005)
 
     def move(self):
-        """Conduct the games"""
-        STENCIL = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
-        NeighbourCount = convolve2d(self.board, STENCIL, mode='same')
+        """Conduct the games."""
+        stencil = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
+        neighbourCount = convolve2d(self.board, stencil, mode='same')
 
         for i in range(self.board.shape[0]):
             for j in range(self.board.shape[1]):
                 self.board[i, j] = 1 if (
-                    NeighbourCount[i, j] == 3 or (NeighbourCount[i, j] == 2
+                    neighbourCount[i, j] == 3 or (neighbourCount[i, j] == 2
                                                   and self.board[i, j])) else 0
 
     def __setitem__(self, key, value):
         self.board[key] = value
 
     def show(self):
-        """"Show the result"""
+        """Show the result."""
         pyplot.clf()
         pyplot.matshow(self.board, fignum=0, cmap='binary')
         pyplot.show()
