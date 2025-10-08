@@ -86,3 +86,28 @@ class Game:
         pyplot.clf()
         pyplot.matshow(self.board, fignum=0, cmap='binary')
         pyplot.show()
+
+
+class Pattern:
+    """Show different pattern of glider."""
+
+    def __init__(self, grid):
+        self.grid = grid
+
+    def flip_vertical(self):
+        return Pattern(self.grid[::-1])
+
+    def flip_horizontal(self):
+        return Pattern(self.grid[:, ::-1])
+
+    def flip_diag(self):
+        result = Pattern(self.grid.copy())
+        return Pattern(np.transpose(result.grid))
+
+    def rotate(self, n):
+        result = Pattern(self.grid.copy())
+        for i in range(n):
+            result = result.flip_diag().flip_vertical()
+        return result
+        
+
