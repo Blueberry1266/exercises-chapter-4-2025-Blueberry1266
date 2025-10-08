@@ -88,7 +88,7 @@ class Game:
         pyplot.show()
 
     def insert(self, pattern, coord):
-        """Insert the pattern with center coordinates"""
+        """Insert the pattern with center coordinates."""
         x_length, y_length = pattern.grid.shape[0], pattern.grid.shape[1]
         self.board[coord[0]-(x_length - 1)//2:coord[0]+(x_length + 1)//2,
                    coord[1]-(y_length - 1)//2:coord[1]+(y_length + 1)//2
@@ -102,22 +102,21 @@ class Pattern:
         self.grid = grid
 
     def flip_vertical(self):
-        """Flip pattern upside down"""
+        """Flip pattern upside down."""
         return Pattern(self.grid[::-1])
 
     def flip_horizontal(self):
-        """Flip pattern left to right"""
+        """Flip pattern left to right."""
         return Pattern(self.grid[:, ::-1])
 
     def flip_diag(self):
-        """Transpose Pattern"""
+        """Transpose pattern."""
         result = Pattern(self.grid.copy())
         return Pattern(np.transpose(result.grid))
 
     def rotate(self, n):
-        """Rotate pattern n times"""
+        """Rotate pattern n times."""
         result = Pattern(self.grid.copy())
         for i in range(n):
             result = result.flip_diag().flip_vertical()
         return result
-
