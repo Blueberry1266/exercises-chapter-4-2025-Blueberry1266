@@ -1,3 +1,5 @@
+"""Play a life game."""
+
 import numpy as np
 from matplotlib import pyplot
 from scipy.signal import convolve2d
@@ -52,12 +54,14 @@ glider_gun = np.array([
 
 
 class Game:
-    """Play a game"""
+    """Play a game."""
 
     def __init__(self, game, size):
         game.board = np.zeros((size, size))
 
     def play(self):
+        """Play a game."""
+
         print("Playing life. Press ctrl + c to stop.")
         pyplot.ion()
         while True:
@@ -66,6 +70,8 @@ class Game:
             pyplot.pause(0.0000005)
 
     def move(self):
+        """Play a game."""
+
         stencil = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
         neighbourcount = convolve2d(self.board, stencil, mode='same')
 
@@ -76,14 +82,20 @@ class Game:
                                              and self.board[i, j])) else 0
 
     def __setitem__(self, key, value):
+        """Play a game."""
+
         self.board[key] = value
 
     def show(self):
+        """Play a game."""
+
         pyplot.clf()
         pyplot.matshow(self.board, fignum=0, cmap='binary')
         pyplot.show()
 
     def insert(self, pattern, place):
+        """Play a game."""
+
         height = (len(pattern.grid)-1)//2
         width = (len(pattern.grid[0])-1)//2
         x, y = place[0], place[1]
