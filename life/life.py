@@ -52,8 +52,10 @@ glider_gun = np.array([
 
 
 class Game:
-    def __init__(game, Size):
-        game.board = np.zeros((Size, Size))
+    """Play a game"""
+
+    def __init__(self, game, size):
+        game.board = np.zeros((size, size))
 
     def play(self):
         print("Playing life. Press ctrl + c to stop.")
@@ -64,13 +66,13 @@ class Game:
             pyplot.pause(0.0000005)
 
     def move(self):
-        STENCIL = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
-        NeighbourCount = convolve2d(self.board, STENCIL, mode='same')
+        stencil = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
+        neighbourcount = convolve2d(self.board, stencil, mode='same')
 
         for i in range(self.board.shape[0]):
             for j in range(self.board.shape[1]):
-                self.board[i, j] = 1 if (NeighbourCount[i, j] == 3
-                                         or (NeighbourCount[i, j] == 2
+                self.board[i, j] = 1 if (neighbourcount[i, j] == 3
+                                         or (neighbourcount[i, j] == 2
                                              and self.board[i, j])) else 0
 
     def __setitem__(self, key, value):
