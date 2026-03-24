@@ -61,7 +61,6 @@ class Game:
 
     def play(self):
         """Play a game."""
-
         print("Playing life. Press ctrl + c to stop.")
         pyplot.ion()
         while True:
@@ -71,7 +70,6 @@ class Game:
 
     def move(self):
         """Play a game."""
-
         stencil = np.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]])
         neighbourcount = convolve2d(self.board, stencil, mode='same')
 
@@ -83,12 +81,10 @@ class Game:
 
     def __setitem__(self, key, value):
         """Play a game."""
-
         self.board[key] = value
 
     def show(self):
         """Play a game."""
-
         pyplot.clf()
         pyplot.matshow(self.board, fignum=0, cmap='binary')
         pyplot.show()
@@ -103,14 +99,18 @@ class Game:
 
 
 class Pattern:
+    """A Pattern type"""
+
     def __init__(self, grid):
         self.grid = grid
 
     def flip_vertical(self):
+        """Play a game."""
         new_grid = self.grid[::-1]
         return Pattern(new_grid)
 
     def flip_horizontal(self):
+        """Play a game."""
         new_grid = copy(self.grid)
         length_grid = len(self.grid[1])
         for j in range(len(self.grid)):
@@ -119,10 +119,12 @@ class Pattern:
         return Pattern(new_grid)
 
     def flip_diag(self):
+        """Play a game."""
         new_grid = np.transpose(self.grid)
         return Pattern(new_grid)
 
     def rotate(self, n):
+        """Play a game."""
         res = self
         for j in range(n):
             res = res.flip_diag().flip_vertical()
