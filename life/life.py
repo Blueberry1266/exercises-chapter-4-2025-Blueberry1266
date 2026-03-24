@@ -91,7 +91,6 @@ class Game:
 
     def insert(self, pattern, place):
         """Play a game."""
-
         height = (len(pattern.grid)-1)//2
         width = (len(pattern.grid[0])-1)//2
         x, y = place[0], place[1]
@@ -99,7 +98,7 @@ class Game:
 
 
 class Pattern:
-    """A Pattern type"""
+    """A Pattern type."""
 
     def __init__(self, grid):
         self.grid = grid
